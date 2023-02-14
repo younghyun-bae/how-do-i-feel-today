@@ -1,15 +1,5 @@
-// LOGGING
-console.log('hi');
+"use strict";
 
-// VARIABLES: CONST / LET
-const message = 'hello';
-// console.log(message);
-
-let counter = 0;
-// console.log(counter);
-
-// counter = counter + 1;
-// console.log(counter);
 // DISPLAY OUTPUT
 function displayOutput(type, data) {
   const output = document.getElementById(type);
@@ -28,20 +18,13 @@ function updateOutput(type, dataFunction, rate) {
 // date
 const timeOfPageLoad = new Date();
 const date =
-  timeOfPageLoad.getFullYear() +
-  "/" +
   (timeOfPageLoad.getMonth() + 1) +
-  "/" +
-  timeOfPageLoad.getDate();
-displayOutput("date", date);
+  ". " +
+  timeOfPageLoad.getDate() +
+  ". " +
+  timeOfPageLoad.getFullYear();
 
-// DATA TYPES
-const number = 1;
-const string = '1';
-const boolean = false;
-let undefinedVariable;
-// console.log(number);
-// console.log(typeof(number));
+displayOutput("date", date);
 
 // GET ELEMENT BY ID
 const button1 = document.getElementById('button-1');
@@ -53,160 +36,186 @@ const button6 = document.getElementById('button-6');
 const text1 = document.getElementById('text-1');
 const text2 = document.getElementById('text-2');
 const clickingCounter = document.getElementById('clickingCounter');
-// console.log(button1);
 
 const mood = document.getElementById('mood');
 
 
-// CHANGE CSS / CLASS WITH JS
-// text1.style.color = 'red';
-// text1.classList.add('hidden');
+/**
+ * BUTTON EVENT
+ * */
+var back_image, size_string;
 
-// CLICK EVENT LISTENER
-// when you click on button-1
-button1.addEventListener('click', function () {
-  var buttonText = button1.innerHTML
-  if(buttonText === 'special'){
-    button1.innerHTML = 'normal'
+var figure = "triangle"; // 'special' = default
 
-   //mood.style.backgroundColor = 'blue'
+var x = 100;
+var y = 100;
+var size = 1;
+var dia_deg = 45;
+var tri_deg = 68;
 
-    mood.classList.remove('special')
-    mood.classList.add('normal')
 
-  } else if(buttonText === 'normal') { 
-    button1.innerHTML = 'excited'
+function ChangeView() {
+    // Styling shapes
+    switch (figure) {
+        case "circle": back_image = "radial-gradient( transparent 50%, antiquewhite 0), radial-gradient(transparent 50%, antiquewhite 0)";
+            break;
+        case "dia":
+            if (y == 100) dia_deg = 45;
+            else if (y == 75) dia_deg = 35;
+            else if (y == 50) dia_deg = 25;
 
-  }
-  else if(buttonText === 'excited'){
-    button1.innerHTML = 'boring'
-  }
-  else if(buttonText === 'boring'){
-    button1.innerHTML = 'special'
-  }
-});
+            back_image = "linear-gradient(" + String(dia_deg) + "deg, transparent 70%, antiquewhite 70%),"
+            + "linear-gradient(" + String(180 - dia_deg) + "deg, transparent 70%, antiquewhite 70%),"
+            + "linear-gradient(" + String(180 + dia_deg) + "deg, transparent 70%, antiquewhite 70%),"
+            + "linear-gradient(" + String(360 - dia_deg) + "deg, transparent 70%, antiquewhite 70%)";
+            break;
+        case "rectangle": back_image = "linear-gradient(0deg, transparent 75%, antiquewhite 75%),"
+            + "linear-gradient(90deg, transparent 75%, antiquewhite 75%),"
+            + "linear-gradient(180deg, transparent 75%, antiquewhite 75%),"
+            + "linear-gradient(270deg, transparent 75%, antiquewhite 75%)";
+            break;
+        case "triangle":
+            if (y == 100) tri_deg = 68;
+            else if (y == 75) tri_deg = 55;
+            else if (y == 50) tri_deg = 40;
 
-// when you click on button-2
-button2.addEventListener('click', function () {
-  // toggle class that hides text-1
-
-  var buttonText = button2.innerHTML
-
-  if(buttonText === 'nervous'){
-    button2.innerHTML = 'sad'
-
-   //mood.style.backgroundColor = 'blue'
-
-    mood.classList.remove('nervous')
-    mood.classList.add('sad')
-  }
-    else if(buttonText==='sad'){ 
-      button2.innerHTML = 'angry'
-
-    }
-    else if(buttonText==='angry'){ 
-      button2.innerHTML = 'relieved'
-
-    }
-    else if(buttonText==='relieved'){ 
-      button2.innerHTML = 'happy'
-
-    }
-    else if(buttonText==='happy'){ 
-      button2.innerHTML = 'nervous'
-
+            back_image = "linear-gradient(" + String(tri_deg) + "deg, transparent 65%, antiquewhite 65%),"
+            + "linear-gradient(-" + String(tri_deg) + "deg, transparent 65%, antiquewhite 65%),"
+            + "linear-gradient(180deg, transparent 70%, antiquewhite 70%)";
+            break;
     }
     
+    // Setting background graphic to CSS
+    size_string = String(x * size) + "px " + String(y * size) + "px";
 
-  // increment counter and output new value
-  /*counter += 1;
-  clickingCounter.innerHTML = counter;*/
+    document.body.style.backgroundImage = back_image;
+    document.body.style.backgroundSize = size_string;
+};
+
+
+// CLICK EVENT LISTENER
+
+// To change a shape
+button1.addEventListener('click', function () {
+    var buttonText = button1.innerHTML;
+
+    if(buttonText === 'special'){
+        button1.innerHTML = 'normal';
+        figure = "circle";
+    }
+    else if (buttonText === 'normal') { 
+        button1.innerHTML = 'complicated';
+        figure = "dia";
+    }
+    else if(buttonText === 'complicated'){
+        button1.innerHTML = 'boring';
+        figure = "rectangle";
+    }
+    else if(buttonText === 'boring'){
+        button1.innerHTML = 'special';
+        figure = "triangle";
+    }
+
+    ChangeView()
 });
 
-// when you click on button-3
+// To change a color
+button2.addEventListener('click', function () {
+    var buttonText = button2.innerHTML;
+
+    if(buttonText === 'nervous'){
+        button2.innerHTML = 'sad';
+        document.body.style.backgroundColor = "#0494EC";
+    }
+    else if(buttonText==='sad'){ 
+        button2.innerHTML = 'angry';
+        document.body.style.backgroundColor = "#B32408";
+    }
+    else if(buttonText==='angry'){ 
+        button2.innerHTML = 'relieved';
+        document.body.style.backgroundColor = "#0E6B0E";
+    }
+    else if(buttonText==='relieved'){ 
+        button2.innerHTML = 'happy';
+        document.body.style.backgroundColor = "#FFD700";
+    }
+    else if(buttonText==='happy'){ 
+        button2.innerHTML = 'nervous';
+        document.body.style.backgroundColor = "#BC84DC";
+    }
+});
+
+// To change a size
 button3.addEventListener('click', function () {
- 
-    var buttonText = button3.innerHTML
+    var buttonText = button3.innerHTML;
+
     if(buttonText === 'low'){
-      button3.innerHTML = 'high'
+        button3.innerHTML = 'high';
+        size = 2;
+    }
+    else if (buttonText === 'high') { 
+        button3.innerHTML = 'low';
+        size = 1;
+    }
 
-      mood.classList.remove('special')
-      mood.classList.add('normal')
-  
-    } else if(buttonText === 'high') { 
-      button3.innerHTML = 'low'
-  
-}});
+    ChangeView()
+});
 
+// To adjust a blurry effect
 button4.addEventListener('click', function () {
- 
-  var buttonText = button4.innerHTML
-  if(buttonText === 'slept well'){
-    button4.innerHTML = 'did not slept well'
+    var buttonText = button4.innerHTML
 
-    mood.classList.remove('special')
-    mood.classList.add('normal')
+    if(buttonText === 'slept well'){
+        button4.innerHTML = 'did not slept well'
+        document.body.classList.add('drop-blur')
+    }
+    else if (buttonText === 'did not slept well') { 
+        button4.innerHTML = 'slept well'
+        document.body.classList.remove('drop-blur')
+    }
+});
 
-  } else if(buttonText === 'did not slept well') { 
-    button4.innerHTML = 'slept well'
-
-}});
-
+// To change a height
 button5.addEventListener('click', function () {
- 
-  var buttonText = button5.innerHTML
-  if(buttonText === 'not'){
-    button5.innerHTML = 'bit'
+    var buttonText = button5.innerHTML;
 
-    mood.classList.remove('special')
-    mood.classList.add('normal')
-
-  } else if(buttonText === 'bit') { 
-    button5.innerHTML = 'really'
-  }
+    if(buttonText === 'not'){
+        button5.innerHTML = 'bit'
+        y = 75;
+    }
+    else if (buttonText === 'bit') { 
+        button5.innerHTML = 'really'
+        y = 50;
+    }
     else if(buttonText === 'really') { 
-      button5.innerHTML = 'not'
+        button5.innerHTML = 'not'
+        y = 100;
+    }
 
-}});
+    ChangeView();
+});
 
-button6.addEventListener('click', function () {
- 
-  var buttonText = button6.innerHTML
-  if(buttonText === 'fast'){
-    button6.innerHTML = 'slow'
 
-    mood.classList.remove('special')
-    mood.classList.add('normal')
-
-  } else if(buttonText === 'slow') { 
-    button6.innerHTML = 'fast'
-  }
-  });
+/**
+ * MOUSE EVENT
+ * */
 
 // MOUSEMOVE EVENT LISTENER
 const body = document.body;
 const circle = document.getElementById('circle');
-
+// TOUCHMOVE EVENT LISTENER
 body.addEventListener('mousemove', function (e) {
   const mouseX = e.clientX;
   const mouseY = e.clientY;
-  // console.log(mouseX, mouseY);
 
   circle.style.left = mouseX + 'px';
   circle.style.top = mouseY + 'px';
 });
-
-// TOUCHMOVE EVENT LISTENER
 body.addEventListener('touchmove', function () {
-  const touch = e.touches[0];
-  const touchX = e.touch.clientX;
-  const touchY = e.touch.clientY;
-  // console.log(touchX, touchY);
+    const touch = e.touches[0];
+    const touchX = e.touch.clientX;
+    const touchY = e.touch.clientY;
 
-  circle.style.left = mouseX + 'px';
-  circle.style.top = mouseY + 'px';
-}
-
-
-
-);
+    circle.style.left = mouseX + 'px';
+    circle.style.top = mouseY + 'px';
+});
