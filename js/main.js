@@ -26,7 +26,7 @@ const date =
 
 displayOutput("date", date);
 
-// GET ELEMENT BY ID
+// GET ACCESS TO ELEMENTS
 const button1 = document.getElementById('button-1');
 const button2 = document.getElementById('button-2');
 const button3 = document.getElementById('button-3');
@@ -40,9 +40,9 @@ const clickingCounter = document.getElementById('clickingCounter');
 const mood = document.getElementById('mood');
 
 
-/**
- * BUTTON EVENT
- * */
+/* 
+  BUTTON EVENT 
+*/
 var back_image, size_string;
 
 var figure = "triangle"; // 'special' = default
@@ -55,7 +55,7 @@ var tri_deg = 68;
 
 
 function ChangeView() {
-    // Styling shapes
+    // STYLE SHAPES
     switch (figure) {
         case "circle": back_image = "radial-gradient( transparent 50%, antiquewhite 0), radial-gradient(transparent 50%, antiquewhite 0)";
             break;
@@ -85,7 +85,7 @@ function ChangeView() {
             break;
     }
     
-    // Setting background graphic to CSS
+    // SET BACKGROUND GRAPHICS TO CSS
     size_string = String(x * size) + "px " + String(y * size) + "px";
 
     document.body.style.backgroundImage = back_image;
@@ -93,10 +93,12 @@ function ChangeView() {
 };
 
 
-// CLICK EVENT LISTENER
+/* 
+  CLICK EVENT LISTENER
+*/
 
 // To change a shape
-button1.addEventListener('click', function () {
+button1.addEventListener('click', function() {
     var buttonText = button1.innerHTML;
 
     if(buttonText === 'special'){
@@ -120,7 +122,7 @@ button1.addEventListener('click', function () {
 });
 
 // To change a color
-button2.addEventListener('click', function () {
+button2.addEventListener('click', function() {
     var buttonText = button2.innerHTML;
 
     if(buttonText === 'nervous'){
@@ -146,7 +148,7 @@ button2.addEventListener('click', function () {
 });
 
 // To change a size
-button3.addEventListener('click', function () {
+button3.addEventListener('click', function() {
     var buttonText = button3.innerHTML;
 
     if(buttonText === 'low'){
@@ -162,7 +164,7 @@ button3.addEventListener('click', function () {
 });
 
 // To adjust a blurry effect
-button4.addEventListener('click', function () {
+button4.addEventListener('click', function() {
     var buttonText = button4.innerHTML
 
     if(buttonText === 'slept well'){
@@ -176,7 +178,7 @@ button4.addEventListener('click', function () {
 });
 
 // To change a height
-button5.addEventListener('click', function () {
+button5.addEventListener('click', function() {
     var buttonText = button5.innerHTML;
 
     if(buttonText === 'not'){
@@ -196,22 +198,22 @@ button5.addEventListener('click', function () {
 });
 
 
-/**
- * MOUSE EVENT
- * */
+/*
+  MOUSE EVENT
+*/
 
 // MOUSEMOVE EVENT LISTENER
 const body = document.body;
 const circle = document.getElementById('circle');
 // TOUCHMOVE EVENT LISTENER
-body.addEventListener('mousemove', function (e) {
+body.addEventListener('mousemove', function(e) {
   const mouseX = e.clientX;
   const mouseY = e.clientY;
 
   circle.style.left = mouseX + 'px';
   circle.style.top = mouseY + 'px';
 });
-body.addEventListener('touchmove', function () {
+body.addEventListener('touchmove', function() {
     const touch = e.touches[0];
     const touchX = e.touch.clientX;
     const touchY = e.touch.clientY;
