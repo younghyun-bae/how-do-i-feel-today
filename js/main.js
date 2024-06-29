@@ -101,7 +101,7 @@ function ChangeView() {
 button1.addEventListener('click', function() {
     var buttonText = button1.innerHTML;
 
-    if(buttonText === 'special'){
+    if(buttonText === 'happy'){
         button1.innerHTML = 'normal';
         figure = "circle";
     }
@@ -114,7 +114,7 @@ button1.addEventListener('click', function() {
         figure = "rectangle";
     }
     else if(buttonText === 'boring'){
-        button1.innerHTML = 'special';
+        button1.innerHTML = 'happy';
         figure = "triangle";
     }
 
@@ -182,14 +182,14 @@ button5.addEventListener('click', function() {
     var buttonText = button5.innerHTML;
 
     if(buttonText === 'not'){
-        button5.innerHTML = 'bit'
+        button5.innerHTML = 'a bit'
         y = 75;
     }
-    else if (buttonText === 'bit') { 
-        button5.innerHTML = 'really'
+    else if (buttonText === 'a bit') { 
+        button5.innerHTML = 'super'
         y = 50;
     }
-    else if(buttonText === 'really') { 
+    else if(buttonText === 'super') { 
         button5.innerHTML = 'not'
         y = 100;
     }
